@@ -40,9 +40,8 @@ public class EnderChestPlugin extends JavaPlugin {
 
     public void onDisable() {
 
-        Bukkit.getScheduler().runTaskAsynchronously(this, () ->
-                enderChestManager.getEnderChestList().forEach(enderChest ->
-                        enderChestRepository.insertOrUpate(enderChest.getOwner(), InventorySerialize.toJsonObject(enderChest.getEnderChest()).toString())));
+        enderChestManager.getEnderChestList()
+            .forEach(enderChest -> enderChestRepository.insertOrUpate(enderChest.getOwner(), InventorySerialize.toJsonObject(enderChest.getEnderChest()).toString())));
 
     }
 }

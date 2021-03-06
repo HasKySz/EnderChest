@@ -25,7 +25,6 @@ public class EnderChestManager {
 
     public void load(Player player) {
 
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () ->
         enderChestList.add(EnderChest.builder()
             .owner(player.getName())
             .enderChest(EnderChestPlugin.getEnderChestRepository().enderChestExists(player.getName()) ?

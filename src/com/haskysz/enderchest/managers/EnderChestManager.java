@@ -26,13 +26,12 @@ public class EnderChestManager {
     public void load(Player player) {
 
         Bukkit.getScheduler().runTaskAsynchronously(plugin, () ->
-                enderChestList.add(EnderChest
-                        .builder()
-                        .owner(player.getName())
-                        .enderChest(EnderChestPlugin.getEnderChestRepository().enderChestExists(player.getName()) ?
-                                EnderChestPlugin.getEnderChestRepository().getEnderChest(player.getName()) : createEnderChest(player))
-                        .delay(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(10))
-                        .build()));
+        enderChestList.add(EnderChest.builder()
+            .owner(player.getName())
+            .enderChest(EnderChestPlugin.getEnderChestRepository().enderChestExists(player.getName()) ?
+                    EnderChestPlugin.getEnderChestRepository().getEnderChest(player.getName()) : createEnderChest(player))
+            .delay(System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(10))
+            .build());
 
     }
 
@@ -43,8 +42,7 @@ public class EnderChestManager {
         enderChestList.remove(enderChest);
 
         if (enderChest != null)
-            Bukkit.getScheduler().runTaskAsynchronously(plugin, () ->
-                    EnderChestPlugin.getEnderChestRepository().insertOrUpate(player.getName(), InventorySerialize.toJsonObject(enderChest.getEnderChest()).toString()));
+            EnderChestPlugin.getEnderChestRepository().insertOrUpate(player.getName(), InventorySerialize.toJsonObject(enderChest.getEnderChest()).toString());
     }
 
     public EnderChest find(String owner) {
@@ -58,11 +56,11 @@ public class EnderChestManager {
 
     public int getEnderChestRows(Player player) {
 
-        if (player.hasPermission("syrenmc.orion")) return 9*6;
+        if (player.hasPermission("enderchest.6")) return 9*6;
 
-        if (player.hasPermission("syrenmc.sirius")) return 9*5;
+        if (player.hasPermission("enderchest.5")) return 9*5;
 
-        if (player.hasPermission("syrenmc.sirius")) return 9*4;
+        if (player.hasPermission("enderchest.4")) return 9*4;
 
         return 9*3;
 
